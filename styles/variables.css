@@ -1,1 +1,151 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+
+:root {
+  /*Фоновое изображение*/
+
+  --page_background-image: repeating-linear-gradient(
+      90deg,
+      #d3d3d3 0 2px,
+      transparent 2px 4px
+    ),
+    repeating-linear-gradient(0deg, #d3d3d3 0 2px, transparent 2px 4px),
+    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a);
+
+  /*Шрифты*/
+
+  --main-font: "Inter-Variable";
+  --accent-font: "PressStart2P";
+
+  /*Вес шрифтов*/
+
+  --card-text_font-weight: 410;
+  --card-title_font-weight: 715;
+
+  /*Размеры шрифтов*/
+
+  --header-logo_size: clamp(
+    3.0625rem,
+    2.7104rem + 1.5023vw,
+    4.0625rem
+  ); /*от 65px до 49px.*/
+  --header-title_size: clamp(
+    0.875rem,
+    0.6769rem + 0.8451vw,
+    1.4375rem
+  ); /*от 23px до 14px.*/
+  --card-title_size: 1.125rem; /*Переводим 18px в rem (18px / 16px) = 1.125rem.*/
+  --card-text_size: 1.125rem; /*Переводим 18px в rem (18px / 16px) = 1.125rem.*/
+  --button-text_size: 0.875rem; /*Переводим 14px в rem (14px / 16px) = 0.875rem.*/
+  --watermark-text_size: 0.875rem; /*Переводим 14px в rem (14px / 16px) = 0.875rem.*/
+  --floppy-dialog-text_size: 0.875rem; /*Переводим 14px в rem (14px / 16px) = 0.875rem.*/
+
+  /*Размеры блоков*/
+
+  --header_min-block-size: clamp(
+    20.4375rem,
+    19.5352rem + 3.8498vw,
+    23rem
+  ); /*от 368px до 327px.*/
+  --section_inline-size: clamp(
+    23.4375rem,
+    16.2852rem + 30.5164vw,
+    43.75rem
+  ); /*Генерируем формулу
+  от максимальной десктопной версии 1440px до максимальной мобильной версии 375px по макету
+  при ширине блока от 700px до 375px.*/
+  --like-button_inline-size: 8.125rem; /*130px.*/
+  --floppy-dialog_min-inline-size: clamp(
+    21.3125rem,
+    21.0484rem + 1.1268vw,
+    22.0625rem
+  ); /*от 353px до 341px.*/
+  --floppy-dialog-text_max-inline-size: 14.625rem; /*234px.*/
+
+  /*Внутренние отступы*/
+
+  --header_padding-inline: clamp(
+    0.9375rem,
+    -1.3732rem + 9.8592vw,
+    7.5rem
+  ); /*от 120px (по макету 122.5px и 16px) до 15px. Подгоняем с PixelPerfect.*/
+  --header_padding-block: clamp(
+    7.5625rem,
+    7.3644rem + 0.8451vw,
+    8.125rem
+  ); /*от 130px до 121px (по макету 122px).*/
+  --card-title_padding-block: 0.25rem; /*4px.*/
+  --card-title_padding-inline: 0.625rem; /*10px.*/
+  --card-content_padding: 1.5625rem; /*25px.*/
+  --like-button_padding-block: 0.65625rem; /*10.5px.*/
+  --save-button_padding-block: 0.9375rem; /*15px.*/
+  --save-button_padding-inline: 1.125rem; /*18px.*/
+  --floppy-dialog_padding: 1.75rem; /*28px.*/
+  --floppy-dialog_padding-inline: 2.375rem; /*38px (Для мобильной версии сайта).*/
+  --floppy-dialog-button_padding-block: 0.625rem; /*10px, по макету 10.5px.*/
+  --floppy-dialog-button_padding-inline: clamp(
+    7.125rem,
+    6.7729rem + 1.5023vw,
+    8.125rem
+  );
+  /*от 130px до 114px, по макету от 130.5px до 114.5px.*/
+
+  /*Внешние отступы*/
+
+  --header_margin-block-start: 6.25rem; /*100px.*/
+  --header_margin-block-end: 2.875rem; /*Подгоняем с PixelPerfect 46px (48px по макету).*/
+  --footer_margin-block-end: 6.25rem; /*100px.*/
+
+  /*Высота линии*/
+
+  --header_line-height: 1em; /*Задаём высоту линии равной высоте шрифта, т.е. 100%.*/
+  --card-title_line-height: 1.222em; /*Задаём высоту линии равной высоте шрифта, т.е. 100%
+  + учитываем Paragraph spacing = 19px (шрифт 18px). Подгоняем с PixelPerfect.*/
+  --text_line-height: 1.167em; /*Переводим из абсолютных единиц в относительные 21px * 1em / 18px = 1.167em.*/
+  --button-text_line-height: 0.9em; /*Переводим из абсолютных единиц в относительные 12.6px (90%) * 1em / 14px = 0.9em.*/
+  --watermark_line-height: 1em; /*Задаём высоту линии равной высоте шрифта, т.е. 100%.*/
+  --floppy-dialog-text_line-height: 1.5em; /*Задаём высоту линии равной 150% шрифта.*/
+
+  /*Цвета основные*/
+
+  --text-stroke_color: rgb(255 255 255 / 0.5);
+  --background_color: #fff;
+  --text_color: #000;
+  --backdrop_color: rgb(0 0 0 / 0.75);
+
+  /*Цвета для эффектов кнопок*/
+
+  --pseudo-element_color: #000;
+  --accent-hover_color: #fff;
+  --accent-focus_color: #000;
+
+  /*Цвета для анимации сердца*/
+
+  --contour_color: #000;
+  --hover_color: #000;
+  --animation-fill_color: #ff0000;
+
+  /*Отступы между элементами внутри флексбоксов и гридов*/
+
+  --header_gap: 1.25rem; /*20px.*/
+  --page_gap: 3.125rem; /*50px.*/
+  --card_gap: 3.03125rem; /*Подгоняем с помощью PixelPerfect 48.5px (по макету 50px).*/
+  --card-content_gap: 1.5625rem; /*25px.*/
+  --card-button_gap: 0.1875rem; /*3px (по макету 12px).*/
+  --save-button_gap: 0.5rem; /*8px.*/
+  --floppy-dialog_gap: 1.875rem; /*30px.*/
+  --floppy-dialog-content_gap: 1.25rem; /*20px.*/
+
+  /* Ширина элементов*/
+
+  --text-stroke_width: 0.071em; /*Переводим из абсолютных единиц в относительные 1px * 1em / 14px = 0.071em.*/
+  --border_width: 0.1875rem; /*В макете 2px, но ставим 3px, так как 3px устанавливает значение 2.133px.*/
+
+  /*Позиционирование*/
+
+  --card-watermark_position: 1.5625rem; /*25px.*/
+
+  /*Размеры svg-дискеты*/
+
+  --button-svg-floppy_size: 1.3125rem; /*21px.*/
+  --dialog-svg-floppy_size: 2.4375rem; /*39px.*/
+}

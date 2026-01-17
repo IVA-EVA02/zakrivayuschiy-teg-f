@@ -11,6 +11,578 @@
 */
 
 .page {
-  min-inline-size: 320px;
+  min-inline-size: 375px; /*Задаём минимальную ширину согласно макету.*/
+  max-inline-size: 1440px; /*Задаём максимальную ширину согласно макету.*/
   min-block-size: 100dvb;
+  display: flex; /*Создаём выравнивание блоков страницы в колонку по центру.*/
+  flex-direction: column;
+  align-items: center;
+  gap: var(
+    --page_gap,
+    3.125rem
+  ); /*Между шапкой и основным блоком отступ больше, скорректируем его с помощью margin.*/
+  font-family: var(--main-font, "Inter-Variable"), sans-serif;
+  font-variation-settings: "wght" var(--card-text_font-weight, 410);
+  background-color: var(
+    --background_color,
+    #fff
+  ); /*Задаём фоновый цвет согласно макету под фоновое изображение страницы.*/
+  color: var(--text_color, #000); /*Задаём цвет текста на странице.*/
+  background-image: var(--page_background-image);
+  background-position: center; /*Располагаем фоновое изображение по центру.*/
+  background-size: cover; /*Закрываем фоном полностью страницу.*/
+  background-attachment: fixed; /*Фиксируем фон на месте при прокрутке страницы.*/
+}
+
+/*Общие классы*/
+.section__common {
+  inline-size: var(
+    --section_inline-size,
+    clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem)
+  );
+}
+
+.button__text {
+  /*Размеры у класса по макету не меняются.*/
+  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-size: var(--button-text_size, 0.875rem);
+  line-height: var(--button-text_line-height, 0.9em);
+}
+
+/*Шапка сайта*/
+
+.header {
+  min-block-size: var(
+    --header_min-block-size,
+    clamp(20.4375rem, 19.5352rem + 3.8498vw, 23rem)
+  );
+  display: flex; /*Создаём отступ между заголовком и текстом.*/
+  flex-direction: column;
+  gap: var(--header_gap, 1.25rem);
+  justify-content: center; /*Выравнивание контент по центру вертикали.*/
+  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  background-color: inherit; /*Наследуем фон от родителя page.*/
+  border: currentColor solid var(--border_width, 0.1875rem);
+  text-align: center; /*Выравнивание текст по центру горизонтали.*/
+  text-transform: uppercase;
+  padding-inline: var(
+    --header_padding-inline,
+    clamp(0.9375rem, -1.3732rem + 9.8592vw, 7.5rem)
+  );
+  padding-block: var(
+    --header_padding-block,
+    clamp(7.5625rem, 7.3644rem + 0.8451vw, 8.125rem)
+  );
+  margin-block: var(--header_margin-block-start, 6.25rem)
+    var(--header_margin-block-end, 2.875rem);
+  /*Задаём отступ сверху согласно макету. Он не меняется. 
+  Размер нижнего отступа в мобильной версии 100px, в десктопной версии 98px. Оставим везде 100px.
+  C помощью margin задаём первые 50px, остальные 50px - это gap в page.*/
+  white-space: nowrap; /*Задано свойство, так как в браузере Firefox происходит перенос логотипа.*/
+}
+
+.header__logo {
+  line-height: var(--header_line-height, 1em);
+  font-size: var(
+    --header-logo_size,
+    clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem)
+  );
+}
+
+.header__title {
+  line-height: var(--header_line-height, 1em);
+  font-size: var(
+    --header-title_size,
+    clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem)
+  );
+}
+
+/*Основной контент сайта*/
+
+.main-content__card-list {
+  /*Задаём отступ между карточками.*/
+  display: flex;
+  flex-direction: column;
+  gap: var(--card_gap, 3.03125rem); /*Отступ по макету не меняются.*/
+}
+
+.main-content__card {
+  background-color: var(--background_color, #fff);
+  border: currentColor solid var(--border_width, 0.1875rem);
+}
+
+.card__title {
+  line-height: var(--card-title_line-height, 1.222);
+  font-variation-settings: "wght" var(--card-title_font-weight, 715);
+  font-size: var(--card-title_size, 1.125rem);
+  padding: var(--card-title_padding-block, 0.25rem)
+    var(--card-title_padding-inline, 0.625rem);
+  /*Отступы по макету не меняются.*/
+}
+
+.card__image-block {
+  position: relative;
+  border-block: currentColor solid var(--border_width, 0.1875rem);
+}
+
+.card__image {
+  display: block; /*Помогло выровнять контент по макету!*/
+  object-fit: cover; /*Подгоняем с помощью PerfectPixel к макету.*/
+  width: 100%; /*Подстраиваем размеры изображения под родителя, задав резиновую ширину.*/
+  height: 100%;
+}
+
+.card__watermark {
+  /*Размеры у класса по макету не меняются.*/
+  position: absolute;
+  right: var(--card-watermark_position, 1.5625rem);
+  top: var(--card-watermark_position, 1.5625rem);
+  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-size: var(--watermark-text_size, 0.875rem);
+  line-height: var(--watermark_line-height, 1em);
+  text-transform: uppercase;
+  mix-blend-mode: hard-light;
+  text-shadow: -1px 0 var(--text-stroke_color, rgb(255 255 255 / 0.5)),
+    0 1px var(--text-stroke_color, rgb(255 255 255 / 0.5)),
+    1px 0 var(--text-stroke_color, rgb(255 255 255 / 0.5)),
+    0 -1px var(--text-stroke_color, rgb(255 255 255 / 0.5)); /*Применится свойство тени, если не сработает обводка.*/
+}
+
+@supports (
+  (text-stroke: var(--text-stroke_width, 0.071em) rgb(255 255 255 / 0.5)) or
+    (
+      -webkit-text-stroke: var(--text-stroke_width, 0.071em) rgb(255 255 255 /
+            0.5)
+    )
+) {
+  /*Проверка поддержки свойства обводки
+  с помощью директивы @supports.*/
+  .card__watermark {
+    -webkit-text-stroke: var(--text-stroke_width, 0.071em)
+      var(--text-stroke_color, rgb(255 255 255 / 0.5));
+    text-stroke: var(--text-stroke_width, 0.071em)
+      var(--text-stroke_color, rgb(255 255 255 / 0.5)); /*Добавим экспериментальное свойство, которого 
+    даже нет в спецификации W3C, и пока его нужно писать с префиксом -webkit-.*/
+    text-shadow: none;
+  }
+}
+
+.card__content {
+  display: flex; /*Задаём отступ между параграфами.*/
+  flex-direction: column;
+  gap: var(--card-content_gap, 1.5625rem); /*Отстут по макету не меняется.*/
+  padding: var(
+    --card-content_padding,
+    1.5625rem
+  ); /*Отстут по макету не меняется.*/
+}
+
+.card__text {
+  font-size: var(
+    --card-text_size,
+    1.125rem
+  ); /*Размер шрифта по макету не меняется.*/
+  line-height: var(
+    --text_line-height,
+    1.167em
+  ); /*Размер высоты линии по макету не меняется.*/
+}
+
+.card__button {
+  display: flex;
+  gap: var(--card-button_gap, 0.1875rem); /*Размер отступа не меняется.*/
+  align-self: end;
+}
+
+.card__icon-button {
+  background-color: var(--background_color, #fff);
+  padding: 0;
+  border: transparent solid var(--border_width, 0.1875rem); /*Задаём прозрачную границу, которая
+  при наведении будет перекрашиваться в чёрный цвет.*/
+  line-height: 0;
+}
+
+.card__like-button {
+  inline-size: var(
+    --like-button_inline-size,
+    8.125rem
+  ); /*Задана ширина кнопке, чтобы она
+  оставалась одинаковой при смене текста с like на unlike.*/
+  background-color: var(--background_color, #fff);
+  padding-block: var(--like-button_padding-block, 0.65625rem);
+  border: currentColor solid var(--border_width, 0.1875rem);
+  line-height: 0;
+}
+
+/*Подвал сайта*/
+
+.footer {
+  display: flex;
+  justify-content: center;
+  margin-block-end: var(
+    --footer_margin-block-end,
+    6.25rem
+  ); /*Задаём отступ снизу согласно макету. Он не меняется.*/
+}
+
+.save-button {
+  display: flex;
+  gap: var(--save-button_gap, 0.5rem); /*Размер отступа не меняется.*/
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background_color, #fff);
+  padding: var(--save-button_padding-block, 0.9375rem)
+    var(--save-button_padding-inline, 1.125rem);
+  border: currentColor solid var(--border_width, 0.1875rem);
+}
+
+.save-button__svg-floppy {
+  height: var(--button-svg-floppy_size, 1.3125rem);
+  width: var(--button-svg-floppy_size, 1.3125rem);
+}
+
+/*Диалог "Вставьте дискету, чтобы продолжить"*/
+
+.floppy-dialog[open] {
+  /*По умолчанию диалоговое окно скрыто с помощью свойства display: none.
+  Меняем на display: grid при открытом окне, используя атрибут [open].*/
+  min-inline-size: var(
+    --floppy-dialog_inline-size,
+    clamp(21.3125rem, 21.0484rem + 1.1268vw, 22.0625rem)
+  );
+  display: grid;
+  overflow: visible; /*Cодержимое отображается снаружи родительского блока, если его размеры больше 
+  размеров «родительского» блока.*/
+  justify-content: center;
+  gap: var(--floppy-dialog_gap, 1.875rem); /*Размер отступа не меняется.*/
+  padding: var(--floppy-dialog_padding, 1.75rem);
+  background-color: var(
+    --background_color,
+    #fff
+  ); /*Прописываем фон явно, 
+  хотя он устанавливается браузером автоматически белым.*/
+  border: currentColor solid var(--border_width, 0.1875rem);
+}
+
+.floppy-dialog[open]::backdrop {
+  /*Создаём прозрачность фону в 75% при открытом меню.*/
+  background-color: var(--backdrop_color, rgb(0 0 0 / 0.75));
+}
+
+.floppy-dialog__content {
+  display: grid;
+  grid-template-columns: 2.4375rem auto; /*39px.*/
+  align-items: center;
+  gap: var(
+    --floppy-dialog-content_gap,
+    1.25rem
+  ); /*Размер отступа не меняется.*/
+}
+
+.floppy-dialog__svg-floppy {
+  height: var(--dialog-svg-floppy_size, 2.4375rem);
+  width: var(--dialog-svg-floppy_size, 2.4375rem);
+}
+
+.floppy-dialog__text {
+  max-inline-size: var(
+    --floppy-dialog-text_max-inline-size,
+    14.625rem
+  ); /*Размер блока не меняется.*/
+  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-size: var(--floppy-dialog-text_size, 0.875rem);
+  line-height: var(--floppy-dialog-text_line-height, 1.5em);
+  text-transform: uppercase;
+}
+
+.floppy-dialog__button {
+  background-color: var(--background_color, #fff);
+  padding: var(--floppy-dialog-button_padding-block, 0.625rem)
+    var(
+      --floppy-dialog-button_padding-inline,
+      clamp(7.125rem, 6.7729rem + 1.5023vw, 8.125rem)
+    );
+  border: currentColor solid var(--border_width, 0.1875rem);
+  line-height: 0;
+}
+
+.floppy-dialog__button-text {
+  text-transform: uppercase;
+}
+
+/*Фильтры для изображений в карточках*/
+
+.card__image-block {
+  transition: 2s linear; /*Добавляем плавность для перехода тени карточек в исходное состояние.*/
+}
+
+.card__image-block:hover {
+  /*Вместо фильтра drop-shadow-filter для всех карточек.*/
+  box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.8);
+  transition: 1s linear;
+}
+
+.sepia-filter {
+  filter: sepia(50%); /*Первая карточка. 
+  Создаём Ретро стиль.*/
+}
+
+.opacity-filter {
+  /*Вторая карточка. 
+  Создаём прозрачность.*/
+  filter: opacity(0);
+  transition: 2s linear;
+}
+
+.opacity-filter:hover {
+  filter: opacity(1);
+  transition: 5s linear;
+}
+
+.card__image-block:hover:has(.opacity-filter:hover) {
+  transition: 5s linear;
+}
+
+.blur-filter {
+  /*Третья карточка. 
+  Применяем размытие к изображению. Чем выше значение, тем больше размытие. 
+  Можно указать любые единицы измерения, кроме процентов.*/
+  filter: blur(0.5rem);
+  transition: 2s linear;
+}
+
+.blur-filter:hover {
+  filter: blur(0);
+  transition: 2s linear;
+}
+
+.saturate-filter {
+  filter: saturate(
+    158%
+  ); /*Четвертая карточка.
+  Задаём насыщенность цветов. Выше 100% - насыщенность больше.*/
+}
+
+.drop-shadow-filter {
+  /*Пятая карточка. 
+  Задаём тень вокруг элемента на прозрачном фоне.*/
+  filter: drop-shadow(30px -90px 70px rgb(27, 82, 133));
+  transition: 2s linear;
+}
+
+.drop-shadow-filter:hover {
+  filter: drop-shadow(20px -90px 70px rgb(180, 47, 116))
+    drop-shadow(10px -10px 70px rgb(14, 48, 102))
+    drop-shadow(5px 10px 2px rgb(20, 21, 21));
+  transition: 2s linear;
+}
+
+.multi-filter {
+  /*Шестая карточка:
+  Задаём множественный фильтр:
+ - контрастность изображения выше при значении более 100%, 
+ то есть разница между тёмными и светлыми участками изображения;
+ - яркость изображения выше при значении более 100%.
+ - цвет изображения за счёт поворота цветового круга.*/
+  filter: contrast(110%) brightness(120%) hue-rotate(0.9turn);
+}
+
+.grayscale-filter {
+  /*Седьмая карточка. 
+  Делаем изображение чёрно-белым. От 0 до 1 или проценты.*/
+  filter: grayscale(0.8);
+}
+
+.brightness-filter {
+  filter: brightness(40%); /*Восьмая карточка. 
+  Уменьшаем исходную яркость.*/
+  transition: 2s linear;
+}
+
+.brightness-filter:hover {
+  /*Увеличиваем исходную яркость.*/
+  filter: brightness(120%);
+  transition: 2s linear;
+}
+
+/*Эффекты кнопок  Like, «Сохранить на память», «ОК» и кнопки, оборачивающей сердце*/
+
+/*Эффект фокуса*/
+.card__like-button,
+.save-button,
+.floppy-dialog__button {
+  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
+  position: relative; /*Задаём псевдоэлементу наведения позиционирование.*/
+}
+
+.card__icon-button {
+  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
+}
+
+.card__like-button:focus,
+.save-button:focus,
+.floppy-dialog__button:focus,
+.card__icon-button:focus {
+  /*Сбрасываем фокус у кнопок при нажатии мышью.*/
+  outline: none;
+}
+
+.card__like-button:focus-visible,
+.save-button:focus-visible,
+.floppy-dialog__button:focus-visible {
+  /*Сбрасываем стандартный фокус у кнопок при нажатии Tab.*/
+  outline: none;
+  box-shadow: 2px 2px 0 currentColor;
+  transition: 0.3s ease;
+}
+
+.card__icon-button:focus-visible {
+  outline: none;
+  border-color: var(--accent-focus_color, #000);
+  transition: 0.3s ease;
+}
+
+/*Эффект наведения*/
+.card__like-button::after,
+.save-button::after,
+.floppy-dialog__button::after {
+  content: "";
+  position: absolute;
+  background-color: var(--pseudo-element_color, #000);
+  top: 0; /*Смещаем псевдоэлемент к верхнему левому углу блока, относительно которого позиционируем.*/
+  left: 0;
+  height: 100%; /*Задаём размер блока, относительно которого позиционируем.*/
+  width: 100%;
+  transform-origin: left center; /*Смещаем точку трансформации элемента из центра (по умолчанию) по
+ оси X в начало элемента (left), а по оси Y оставляем посередине. Тогда элемент будет появляться
+ с левого края равномерно при эффекте наведения.*/
+  transform: scaleX(
+    0
+  ); /*Изменяем размер псевдоэлемента до 0 по оси X (скрываем его).*/
+  transition: 0.5s ease-in-out; /*Задаём плавность ухода псевдоэлемента после снятия наведения.*/
+}
+
+.card__like-button:hover::after,
+.save-button:hover::after,
+.floppy-dialog__button:hover::after {
+  transform: scaleX(
+    1
+  ); /*Изменяем размер псевдоэлемента до 1 по оси X (показываем полный размер).*/
+  transition: 0.5s ease-in-out; /*Задаём плавность появления псевдоэлемента при наведении.*/
+  background-color: var(
+    --accent-hover_color,
+    #fff
+  ); /*Задаём смешивание цветов, 
+  задав белый цвет псевдоэлементу при наведении.*/
+  mix-blend-mode: difference; /*Делает белое по белому чёрным, оставляя белое по чёрному белым.*/
+}
+
+.button__text,
+.save-button__svg-floppy {
+  position: relative; /*Позиционируем текст и svg-дискету выше псевдоэлемента.*/
+  z-index: 1;
+  color: var(
+    --accent-hover_color,
+    #fff
+  ); /*Смешивание белого с изначальным черным цветом текста 
+  не влечёт за собой изменений, оставляя его черным. Когда белый псевдоэлемет(задаём при ховере) 
+  будет наезжать на черный текст, то текст изменится на белый.*/
+  mix-blend-mode: difference;
+}
+
+.card__like-button:hover,
+.save-button:hover:hover,
+.floppy-dialog__button:hover,
+.card__icon-button:hover {
+  cursor: pointer; /*Зададим курсор-рука.*/
+}
+
+/*Анимация иконки сердца*/
+
+/*Cостояние по умолчанию*/
+.sparks {
+  opacity: 0; /*Задаём полную прозрачность искрам.*/
+}
+
+.contour {
+  transition: fill 0.1s linear; /*Задаём переход для возврата из красного цвета в исходный.*/
+}
+
+.main-body {
+  transition: fill 0.3s linear; /*Задаём переход для возврата из цвета в исходный прозрачный.*/
+}
+
+.core {
+  transition: fill 0.3s 0.03s linear; /*Задаём переход для возврата из цвета в исходный прозрачный
+ с задержкой 0.03s. Задержка нужна, чтобы при снятии курсора (отмене действия наведения) 
+ сердцевина исчезала после основного тела.*/
+}
+
+/*Cостояние по наведению*/
+
+.like-icon:hover .core {
+  transition: fill 0.3s linear;
+  fill: var(--hover_color, #000);
+}
+
+.like-icon:hover .main-body {
+  transition: fill 0.3s 0.05s linear; /*Задаём задержку появления основного тела.*/
+  fill: var(--hover_color, #000);
+}
+
+/*Cостояние нажатия и удержания кнопки мыши*/
+
+.like-icon:active .core {
+  transition: fill 0.3s linear;
+  fill: var(--animation-fill_color, #ff0000);
+}
+
+.like-icon:active .main-body {
+  transition: fill 0.3s 0.05s linear; /*Задаём задержку появления основного тела.*/
+  fill: var(--animation-fill_color, #ff0000);
+}
+
+/*Клик по иконке (скрипт добавляет после клика svg тэгу с классом like-icon дополнительный 
+класс is-liked, а при повторном клике убирает его)*/
+
+.like-icon.is-liked .core {
+  transition: fill 0.3s linear;
+  fill: var(--animation-fill_color, #ff0000);
+}
+
+.like-icon.is-liked .main-body {
+  transition: fill 0.3s 0.05s linear;
+  fill: var(--animation-fill_color, #ff0000);
+}
+
+.like-icon.is-liked .contour {
+  /*Начинаем анимации чуть позже, чтобы каждая из них пришла 
+ в финальное состояние после завершения предыдущей. Так получается визуальная плавность.*/
+  transition: fill 0.3s 0.06s linear;
+  fill: var(--animation-fill_color, #ff0000);
+}
+
+/*Медиавыражение для мобильной версии сайта*/
+
+@media (width <= 375.200px) {
+  /*Скорректируем. При разрешении 375px страница на 0.200px больше.*/
+  .header {
+    --header_margin-block-end: 3.125rem; /*50px*/
+    margin-block-end: var(--header_margin-block-end, 3.125rem);
+  }
+
+  .save-button {
+    flex-direction: column;
+  }
+
+  .save-button__svg-floppy {
+    --button-svg-floppy_size: 1.75rem;
+
+    height: var(--button-svg-floppy_size, 1.75rem);
+    width: var(--button-svg-floppy_size, 1.75rem);
+  }
+
+  .floppy-dialog[open] {
+    padding-inline: var(--floppy-dialog_padding-inline, 2.375rem);
+  }
 }
