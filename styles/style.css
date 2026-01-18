@@ -123,6 +123,7 @@
 .card__image-block {
   position: relative;
   border-block: currentColor solid var(--border_width, 0.1875rem);
+  transition: 2s linear; /*Добавляем плавность для перехода тени карточек в исходное состояние.*/
 }
 
 .card__image {
@@ -200,6 +201,7 @@
   border: transparent solid var(--border_width, 0.1875rem); /*Задаём прозрачную границу, которая
   при наведении будет перекрашиваться в чёрный цвет.*/
   line-height: 0;
+  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
 }
 
 .card__like-button {
@@ -312,10 +314,6 @@
 
 /*Фильтры для изображений в карточках*/
 
-.card__image-block {
-  transition: 2s linear; /*Добавляем плавность для перехода тени карточек в исходное состояние.*/
-}
-
 .card__image-block:hover {
   /*Вместо фильтра drop-shadow-filter для всех карточек.*/
   box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.8);
@@ -413,10 +411,6 @@
 .floppy-dialog__button {
   transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
   position: relative; /*Задаём псевдоэлементу наведения позиционирование.*/
-}
-
-.card__icon-button {
-  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
 }
 
 .card__like-button:focus,
