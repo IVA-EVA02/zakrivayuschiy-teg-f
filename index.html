@@ -647,7 +647,10 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 21 21"
         >
-          <use href="/svg/image.svg#floppy" />
+          <use href="./svg/image.svg#floppy" /> <!--После публикации на сервере была ошибка 404
+          (файл не найден), так как был прописан абсолютный путь /svg/image.svg#floppy, т.е.
+          путь от "моего" сервера, исправлено на относительный (точка), что делает вёрстку html корнем, 
+          а не сервер. Точка в начале - "начни в текущем каталоге".-->
         </svg>
         <span class="button__text">Сохранить на память</span>
       </button>
@@ -662,7 +665,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 21 21"
         >
-          <use href="/svg/image.svg#floppy" />
+          <use href="./svg/image.svg#floppy" />
         </svg>
         <p class="floppy-dialog__text">Вставьте дискету, чтобы продолжить</p>
       </div>
