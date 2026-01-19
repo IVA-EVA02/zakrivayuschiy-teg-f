@@ -44,25 +44,30 @@
 
 .button__text {
   /*Размеры у класса по макету не меняются.*/
-  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-family: var(--accent-font, "PressStart2P"), fantasy;
   font-size: var(--button-text_size, 0.875rem);
   line-height: var(--button-text_line-height, 0.9em);
+}
+
+.button__common { /*Общие свойства для кнопок с текстом button__text.*/
+  background-color: var(--background_color, #fff);
+  border: currentColor solid var(--border_width, 0.125rem);
+  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
+  position: relative; /*Задаём псевдоэлементу наведения позиционирование.*/
 }
 
 /*Шапка сайта*/
 
 .header {
-  min-block-size: var(
-    --header_min-block-size,
-    clamp(20.4375rem, 19.5352rem + 3.8498vw, 23rem)
-  );
+  /*Удаляем min-block-size, так как высота блока должна определяться 
+  его содержимым автоматически.*/
   display: flex; /*Создаём отступ между заголовком и текстом.*/
   flex-direction: column;
   gap: var(--header_gap, 1.25rem);
   justify-content: center; /*Выравнивание контент по центру вертикали.*/
-  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-family: var(--accent-font, "PressStart2P"), fantasy;
   background-color: inherit; /*Наследуем фон от родителя page.*/
-  border: currentColor solid var(--border_width, 0.1875rem);
+  border: currentColor solid var(--border_width, 0.125rem);
   text-align: center; /*Выравнивание текст по центру горизонтали.*/
   text-transform: uppercase;
   padding-inline: var(
@@ -99,6 +104,16 @@
 
 /*Основной контент сайта*/
 
+.main-content { /*Задаём отступ между карточками и кнопкой "Сохранить на память".*/
+  display: flex;
+  flex-direction: column;
+  gap: var(--main-content_gap, 3.125rem);
+  margin-block-end: var(
+    --main-content_margin-block-end,
+    6.25rem
+  ); /*Задаём отступ снизу согласно макету. Он не меняется.*/
+}
+
 .main-content__card-list {
   /*Задаём отступ между карточками.*/
   display: flex;
@@ -108,7 +123,7 @@
 
 .main-content__card {
   background-color: var(--background_color, #fff);
-  border: currentColor solid var(--border_width, 0.1875rem);
+  border: currentColor solid var(--border_width, 0.125rem);
 }
 
 .card__title {
@@ -122,7 +137,7 @@
 
 .card__image-block {
   position: relative;
-  border-block: currentColor solid var(--border_width, 0.1875rem);
+  border-block: currentColor solid var(--border_width, 0.125rem);
   transition: 2s linear; /*Добавляем плавность для перехода тени карточек в исходное состояние.*/
 }
 
@@ -138,7 +153,7 @@
   position: absolute;
   right: var(--card-watermark_position, 1.5625rem);
   top: var(--card-watermark_position, 1.5625rem);
-  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-family: var(--accent-font, "PressStart2P"), fantasy;
   font-size: var(--watermark-text_size, 0.875rem);
   line-height: var(--watermark_line-height, 1em);
   text-transform: uppercase;
@@ -198,7 +213,7 @@
 .card__icon-button {
   background-color: var(--background_color, #fff);
   padding: 0;
-  border: transparent solid var(--border_width, 0.1875rem); /*Задаём прозрачную границу, которая
+  border: transparent solid var(--border_width, 0.125rem); /*Задаём прозрачную границу, которая
   при наведении будет перекрашиваться в чёрный цвет.*/
   line-height: 0;
   transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
@@ -210,32 +225,18 @@
     8.125rem
   ); /*Задана ширина кнопке, чтобы она
   оставалась одинаковой при смене текста с like на unlike.*/
-  background-color: var(--background_color, #fff);
   padding-block: var(--like-button_padding-block, 0.65625rem);
-  border: currentColor solid var(--border_width, 0.1875rem);
   line-height: 0;
 }
 
-/*Подвал сайта*/
-
-.footer {
-  display: flex;
-  justify-content: center;
-  margin-block-end: var(
-    --footer_margin-block-end,
-    6.25rem
-  ); /*Задаём отступ снизу согласно макету. Он не меняется.*/
-}
-
 .save-button {
+  align-self: center; /*Выравниваем в центре блока main-content.*/
   display: flex;
   gap: var(--save-button_gap, 0.5rem); /*Размер отступа не меняется.*/
   justify-content: center;
   align-items: center;
-  background-color: var(--background_color, #fff);
   padding: var(--save-button_padding-block, 0.9375rem)
     var(--save-button_padding-inline, 1.125rem);
-  border: currentColor solid var(--border_width, 0.1875rem);
 }
 
 .save-button__svg-floppy {
@@ -263,7 +264,7 @@
     #fff
   ); /*Прописываем фон явно, 
   хотя он устанавливается браузером автоматически белым.*/
-  border: currentColor solid var(--border_width, 0.1875rem);
+  border: currentColor solid var(--border_width, 0.125rem);
 }
 
 .floppy-dialog[open]::backdrop {
@@ -291,20 +292,18 @@
     --floppy-dialog-text_max-inline-size,
     14.625rem
   ); /*Размер блока не меняется.*/
-  font-family: var(--accent-font, "PressStart2P"), sans-serif;
+  font-family: var(--accent-font, "PressStart2P"), fantasy;
   font-size: var(--floppy-dialog-text_size, 0.875rem);
   line-height: var(--floppy-dialog-text_line-height, 1.5em);
   text-transform: uppercase;
 }
 
 .floppy-dialog__button {
-  background-color: var(--background_color, #fff);
   padding: var(--floppy-dialog-button_padding-block, 0.625rem)
     var(
       --floppy-dialog-button_padding-inline,
       clamp(7.125rem, 6.7729rem + 1.5023vw, 8.125rem)
     );
-  border: currentColor solid var(--border_width, 0.1875rem);
   line-height: 0;
 }
 
@@ -406,24 +405,14 @@
 /*Эффекты кнопок  Like, «Сохранить на память», «ОК» и кнопки, оборачивающей сердце*/
 
 /*Эффект фокуса*/
-.card__like-button,
-.save-button,
-.floppy-dialog__button {
-  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
-  position: relative; /*Задаём псевдоэлементу наведения позиционирование.*/
-}
 
-.card__like-button:focus,
-.save-button:focus,
-.floppy-dialog__button:focus,
+.button__common:focus,
 .card__icon-button:focus {
   /*Сбрасываем фокус у кнопок при нажатии мышью.*/
   outline: none;
 }
 
-.card__like-button:focus-visible,
-.save-button:focus-visible,
-.floppy-dialog__button:focus-visible {
+.button__common:focus-visible {
   /*Сбрасываем стандартный фокус у кнопок при нажатии Tab.*/
   outline: none;
   box-shadow: 2px 2px 0 currentColor;
@@ -437,9 +426,7 @@
 }
 
 /*Эффект наведения*/
-.card__like-button::after,
-.save-button::after,
-.floppy-dialog__button::after {
+.button__common::after {
   content: "";
   position: absolute;
   top: 0; /*Смещаем псевдоэлемент к верхнему левому углу блока, относительно которого позиционируем.*/
@@ -462,9 +449,7 @@
   , оставляя белое по чёрному белым.*/
 }
 
-.card__like-button:hover::after,
-.save-button:hover::after,
-.floppy-dialog__button:hover::after {
+.button__common:hover::after {
   transform: scaleX(
     1
   ); /*Изменяем размер псевдоэлемента до 1 по оси X (показываем полный размер).*/
@@ -484,9 +469,7 @@
   mix-blend-mode: difference;
 }
 
-.card__like-button:hover,
-.save-button:hover:hover,
-.floppy-dialog__button:hover,
+.button__common:hover,
 .card__icon-button:hover {
   cursor: pointer; /*Зададим курсор-рука.*/
 }

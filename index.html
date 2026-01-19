@@ -23,7 +23,7 @@
 
     <!--Основной контент сайта-->
 
-    <main class="section__common">
+    <main class="main-content section__common">
       <ul class="main-content__card-list">
         <li>
           <article class="main-content__card">
@@ -61,15 +61,19 @@
                 (почему бы не продолжить поэтапно). Боялась, но решилась...
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button"> <!--Задаём для всех кнопок 
+                  значение type="button", так как они не отправляют форму. Данный атрибут
+                  улучшит доступность сайта и сделает его более совместимым с
+                  различными браузерами и устройствами.-->
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
                     viewBox="0 0 39 36"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                  >
+                  > <!--Скрываем svg сердца и дискеты от вспомогательных технологий, 
+                  таких как скринридеры aria-hidden="true". Не несут смысловой нагрузки.-->
                     <g class="heart">
                       <path
                         class="contour"
@@ -94,7 +98,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -139,8 +143,8 @@
                 заготовки в коде уже были для более лёгкой адаптации.
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -172,7 +176,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -214,8 +218,8 @@
                 теперь силы пойдут не на борьбу со страхами, а на учёбу!
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -247,7 +251,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -291,8 +295,8 @@
                 какая-то картинка знаний, которые уже можно обсудить.
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -324,7 +328,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -366,8 +370,8 @@
                 можно сделать в любой момент, наполняет тебя спокойствием 💙.
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -399,7 +403,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -439,8 +443,8 @@
                 удовольствие 🙂.
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -472,7 +476,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -517,8 +521,8 @@
                 прохождения курса.
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -550,7 +554,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -595,8 +599,8 @@
                 заканчиваться...✍
               </p>
               <div class="card__button">
-                <button class="card__icon-button">
-                  <svg
+                <button class="card__icon-button" type="button">
+                  <svg aria-hidden="true"
                     class="like-icon"
                     width="39"
                     height="36"
@@ -628,7 +632,7 @@
                     />
                   </svg>
                 </button>
-                <button class="card__like-button">
+                <button class="card__like-button button__common" type="button">
                   <span class="button__text">Like</span>
                 </button>
               </div>
@@ -636,13 +640,9 @@
           </article>
         </li>
       </ul>
-    </main>
-
-    <!--Подвал сайта-->
-
-    <footer class="footer section__common">
-      <button onclick="window['floppy-dialog'].showModal()" class="save-button">
-        <svg
+      <button onclick="window['floppy-dialog'].showModal()" 
+      class="save-button button__common" type="button">
+        <svg aria-hidden="true"
           class="save-button__svg-floppy"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 21 21"
@@ -654,13 +654,13 @@
         </svg>
         <span class="button__text">Сохранить на память</span>
       </button>
-    </footer>
+    </main>
 
     <!--Диалог "Вставьте дискету, чтобы продолжить"-->
 
     <dialog class="floppy-dialog" id="floppy-dialog">
       <div class="floppy-dialog__content">
-        <svg
+        <svg aria-hidden="true"
           class="floppy-dialog__svg-floppy"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 21 21"
@@ -671,7 +671,7 @@
       </div>
       <button
         type="button"
-        class="floppy-dialog__button"
+        class="floppy-dialog__button button__common"
         onclick="window['floppy-dialog'].close()"
       >
         <span class="button__text floppy-dialog__button-text">ок</span>
