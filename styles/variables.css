@@ -18,8 +18,8 @@
 
   /*Вес шрифтов*/
 
-  --card-text_font-weight: 410;
-  --card-title_font-weight: 715;
+  --card-text_font-weight: 400;
+  --card-title_font-weight: 785;
 
   /*Размеры шрифтов*/
 
@@ -34,10 +34,10 @@
     1.4375rem
   ); /*от 23px до 14px.*/
   --card-title_size: 1.125rem; /*Переводим 18px в rem (18px / 16px) = 1.125rem.*/
-  --card-text_size: 1.125rem; /*Переводим 18px в rem (18px / 16px) = 1.125rem.*/
+  --card-text_size: 1.125rem;
   --button-text_size: 0.875rem; /*Переводим 14px в rem (14px / 16px) = 0.875rem.*/
-  --watermark-text_size: 0.875rem; /*Переводим 14px в rem (14px / 16px) = 0.875rem.*/
-  --floppy-dialog-text_size: 0.875rem; /*Переводим 14px в rem (14px / 16px) = 0.875rem.*/
+  --watermark-text_size: 0.875rem;
+  --floppy-dialog-text_size: 0.875rem;
 
   /*Размеры блоков*/
 
@@ -75,7 +75,6 @@
   --save-button_padding-block: 0.9375rem; /*15px.*/
   --save-button_padding-inline: 1.125rem; /*18px.*/
   --floppy-dialog_padding: 1.75rem; /*28px.*/
-  --floppy-dialog_padding-inline: 2.375rem; /*38px (Для мобильной версии сайта).*/
   --floppy-dialog-button_padding-block: 0.625rem; /*10px, по макету 10.5px.*/
   --floppy-dialog-button_padding-inline: clamp(
     7.125rem,
@@ -102,7 +101,7 @@
 
   /*Цвета основные*/
 
-  --text-stroke_color: rgb(255 255 255 / 0.5);
+  --text-stroke_color: rgb(255 255 255);
   --background_color: #fff;
   --text_color: #000;
   --backdrop_color: rgb(0 0 0 / 0.75);
@@ -132,13 +131,8 @@
 
   /* Ширина элементов*/
 
-  --text-stroke_width: 0.071em; /*Переводим из абсолютных единиц в относительные 1px * 1em / 14px = 0.071em.*/
-  --border_width: 0.125rem; /*В макете 2px, но ставим 3px, так как 3px устанавливает значение 2.133px.
-  Ревьюер написал, что надо как по макету так что правим 0.1875rem на 0.125rem.*/
-
-  /*Позиционирование*/
-
-  --card-watermark_position: 1.5625rem; /*25px.*/
+  --text-stroke_width: 1px;
+  --border_width: 2px;
 
   /*Размеры svg-дискеты*/
 

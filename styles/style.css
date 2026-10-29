@@ -22,7 +22,7 @@
     3.125rem
   ); /*Между шапкой и основным блоком отступ больше, скорректируем его с помощью margin.*/
   font-family: var(--main-font, "Inter-Variable"), sans-serif;
-  font-variation-settings: "wght" var(--card-text_font-weight, 410);
+  font-variation-settings: "wght" var(--card-text_font-weight, 400);
   background-color: var(
     --background_color,
     #fff
@@ -52,8 +52,8 @@
 .button__common {
   /*Общие свойства для кнопок с текстом button__text.*/
   background-color: var(--background_color, #fff);
-  border: currentColor solid var(--border_width, 0.125rem);
-  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
+  border: currentColor solid var(--border_width, 2px);
+  transition: 0.3s ease; /*Задаём плавное появление/снятие фокуса один раз в основном элементе.*/
   position: relative; /*Задаём псевдоэлементу наведения позиционирование.*/
 }
 
@@ -68,7 +68,7 @@
   justify-content: center; /*Выравнивание контент по центру вертикали.*/
   font-family: var(--accent-font, "PressStart2P"), fantasy;
   background-color: inherit; /*Наследуем фон от родителя page.*/
-  border: currentColor solid var(--border_width, 0.125rem);
+  border: currentColor solid var(--border_width, 2px);
   text-align: center; /*Выравнивание текст по центру горизонтали.*/
   text-transform: uppercase;
   padding-inline: var(
@@ -125,12 +125,12 @@
 
 .main-content__card {
   background-color: var(--background_color, #fff);
-  border: currentColor solid var(--border_width, 0.125rem);
+  border: currentColor solid var(--border_width, 2px);
 }
 
 .card__title {
   line-height: var(--card-title_line-height, 1.222);
-  font-variation-settings: "wght" var(--card-title_font-weight, 715);
+  font-variation-settings: "wght" var(--card-title_font-weight, 785);
   font-size: var(--card-title_size, 1.125rem);
   padding: var(--card-title_padding-block, 0.25rem)
     var(--card-title_padding-inline, 0.625rem);
@@ -139,47 +139,47 @@
 
 .card__image-block {
   position: relative;
-  border-block: currentColor solid var(--border_width, 0.125rem);
-  transition: 2s linear; /*Добавляем плавность для перехода тени карточек в исходное состояние.*/
+  border-block: currentColor solid var(--border_width, 2px);
 }
 
 .card__image {
   display: block; /*Помогло выровнять контент по макету!*/
-  object-fit: cover; /*Подгоняем с помощью PerfectPixel к макету.*/
+  object-fit: cover; /*Не добавлено свойство object-position, так как по умолчанию center,
+  а он и требуется, так как картинки и на десктопе и в мобильном отображаются хорошо.*/
   width: 100%; /*Подстраиваем размеры изображения под родителя, задав резиновую ширину.*/
-  height: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .card__watermark {
   /*Размеры у класса по макету не меняются.*/
   position: absolute;
-  right: var(--card-watermark_position, 1.5625rem);
-  top: var(--card-watermark_position, 1.5625rem);
+  right: 1.5625rem; /*25px*/
+  top: 1.5625rem;
   font-family: var(--accent-font, "PressStart2P"), fantasy;
   font-size: var(--watermark-text_size, 0.875rem);
   line-height: var(--watermark_line-height, 1em);
   text-transform: uppercase;
   mix-blend-mode: hard-light;
-  text-shadow: -1px 0 var(--text-stroke_color, rgb(255 255 255 / 0.5)),
-    0 1px var(--text-stroke_color, rgb(255 255 255 / 0.5)),
-    1px 0 var(--text-stroke_color, rgb(255 255 255 / 0.5)),
-    0 -1px var(--text-stroke_color, rgb(255 255 255 / 0.5)); /*Применится свойство тени, если не сработает обводка.*/
+  color: rgb(0 0 0 / 0.5);
+  text-shadow: -1px 0 var(--text-stroke_color, rgb(255 255 255)),
+    0 1px var(--text-stroke_color, rgb(255 255 255)),
+    1px 0 var(--text-stroke_color, rgb(255 255 255)),
+    0 -1px var(--text-stroke_color, rgb(255 255 255)); /*Применится свойство тени, если не сработает обводка.*/
 }
 
 @supports (
-  (text-stroke: var(--text-stroke_width, 0.071em) rgb(255 255 255 / 0.5)) or
+  (text-stroke: var(--text-stroke_width, 1px) rgb(255 255 255)) or
     (
-      -webkit-text-stroke: var(--text-stroke_width, 0.071em) rgb(255 255 255 /
-            0.5)
+      -webkit-text-stroke: var(--text-stroke_width, 1px) rgb(255 255 255)
     )
 ) {
   /*Проверка поддержки свойства обводки
   с помощью директивы @supports.*/
   .card__watermark {
-    -webkit-text-stroke: var(--text-stroke_width, 0.071em)
-      var(--text-stroke_color, rgb(255 255 255 / 0.5));
-    text-stroke: var(--text-stroke_width, 0.071em)
-      var(--text-stroke_color, rgb(255 255 255 / 0.5)); /*Добавим экспериментальное свойство, которого 
+    -webkit-text-stroke: var(--text-stroke_width, 1px)
+      var(--text-stroke_color, rgb(255 255 255));
+    text-stroke: var(--text-stroke_width, 1px)
+      var(--text-stroke_color, rgb(255 255 255)); /*Добавим экспериментальное свойство, которого 
     даже нет в спецификации W3C, и пока его нужно писать с префиксом -webkit-.*/
     text-shadow: none;
   }
@@ -215,10 +215,10 @@
 .card__icon-button {
   background-color: var(--background_color, #fff);
   padding: 0;
-  border: transparent solid var(--border_width, 0.125rem); /*Задаём прозрачную границу, которая
+  border: transparent solid var(--border_width, 2px); /*Задаём прозрачную границу, которая
   при наведении будет перекрашиваться в чёрный цвет.*/
   line-height: 0;
-  transition: 0.3s ease; /*Задаём плавное снятие фокуса.*/
+  transition: 0.3s ease; /*Задаём плавное появление и снятие фокуса один раз в основном элементе.*/
 }
 
 .card__like-button {
@@ -266,7 +266,7 @@
     #fff
   ); /*Прописываем фон явно, 
   хотя он устанавливается браузером автоматически белым.*/
-  border: currentColor solid var(--border_width, 0.125rem);
+  border: currentColor solid var(--border_width, 2px);
 }
 
 .floppy-dialog[open]::backdrop {
@@ -315,12 +315,6 @@
 
 /*Фильтры для изображений в карточках*/
 
-.card__image-block:hover {
-  /*Вместо фильтра drop-shadow-filter для всех карточек.*/
-  box-shadow: 10px 15px 15px rgba(0, 0, 0, 0.8);
-  transition: 1s linear;
-}
-
 .sepia-filter {
   filter: sepia(50%); /*Первая карточка. 
   Создаём Ретро стиль.*/
@@ -330,16 +324,10 @@
   /*Вторая карточка. 
   Создаём прозрачность.*/
   filter: opacity(0);
-  transition: 2s linear;
 }
 
 .opacity-filter:hover {
   filter: opacity(1);
-  transition: 5s linear;
-}
-
-.card__image-block:hover:has(.opacity-filter:hover) {
-  transition: 5s linear;
 }
 
 .blur-filter {
@@ -347,12 +335,10 @@
   Применяем размытие к изображению. Чем выше значение, тем больше размытие. 
   Можно указать любые единицы измерения, кроме процентов.*/
   filter: blur(0.5rem);
-  transition: 2s linear;
 }
 
 .blur-filter:hover {
   filter: blur(0);
-  transition: 2s linear;
 }
 
 .saturate-filter {
@@ -366,14 +352,12 @@
   /*Пятая карточка. 
   Задаём тень вокруг элемента на прозрачном фоне.*/
   filter: drop-shadow(30px -90px 70px rgb(27, 82, 133));
-  transition: 2s linear;
 }
 
 .drop-shadow-filter:hover {
   filter: drop-shadow(20px -90px 70px rgb(180, 47, 116))
     drop-shadow(10px -10px 70px rgb(14, 48, 102))
     drop-shadow(5px 10px 2px rgb(20, 21, 21));
-  transition: 2s linear;
 }
 
 .multi-filter {
@@ -395,13 +379,11 @@
 .brightness-filter {
   filter: brightness(40%); /*Восьмая карточка. 
   Уменьшаем исходную яркость.*/
-  transition: 2s linear;
 }
 
 .brightness-filter:hover {
   /*Увеличиваем исходную яркость.*/
   filter: brightness(120%);
-  transition: 2s linear;
 }
 
 /*Эффекты кнопок  Like, «Сохранить на память», «ОК» и кнопки, оборачивающей сердце*/
@@ -418,13 +400,11 @@
   /*Сбрасываем стандартный фокус у кнопок при нажатии Tab.*/
   outline: none;
   box-shadow: 2px 2px 0 currentColor;
-  transition: 0.3s ease;
 }
 
 .card__icon-button:focus-visible {
   outline: none;
   border-color: var(--accent-focus_color, #000);
-  transition: 0.3s ease;
 }
 
 /*Эффект наведения*/
@@ -441,7 +421,7 @@
   transform: scaleX(
     0
   ); /*Изменяем размер псевдоэлемента до 0 по оси X (скрываем его).*/
-  transition: 0.5s ease-in-out; /*Задаём плавность ухода псевдоэлемента после снятия наведения.*/
+  transition: 0.5s ease-in-out; /*Задаём плавность появления и ухода псевдоэлемента после снятия наведения.*/
   background-color: var(
     --accent-hover_color,
     #fff
@@ -455,7 +435,6 @@
   transform: scaleX(
     1
   ); /*Изменяем размер псевдоэлемента до 1 по оси X (показываем полный размер).*/
-  transition: 0.5s ease-in-out; /*Задаём плавность появления псевдоэлемента при наведении.*/
 }
 
 .button__text,
@@ -562,6 +541,6 @@
   }
 
   .floppy-dialog[open] {
-    padding-inline: var(--floppy-dialog_padding-inline, 2.375rem);
+    padding-inline: 2.375rem; /*38px*/
   }
 }
