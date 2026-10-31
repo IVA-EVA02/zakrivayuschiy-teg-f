@@ -163,7 +163,10 @@
   line-height: var(--watermark_line-height, 1em);
   text-transform: uppercase;
   mix-blend-mode: hard-light;
-  color: rgb(0 0 0 / 0.5);
+  filter: opacity(50%); /*Можно указать вместо фильтра свойство opacity: 0.5;, но в сочетании с mix-blend-mode 
+  производительнее фильтр и тут важно, что порядок фильтров дает разный результат. 
+  Если нет никаких фильтров, то лучше свойство прозрачности использовать, 
+  чтобы браузер не создавал отдельный слой.*/
   text-shadow: -1px 0 var(--text-stroke_color, rgb(255 255 255)),
     0 1px var(--text-stroke_color, rgb(255 255 255)),
     1px 0 var(--text-stroke_color, rgb(255 255 255)),
